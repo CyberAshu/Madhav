@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import EnrollForm
 from .models import ResultImage
-
+from django.http import HttpResponse
 
 def home_view(request):
     error_message = None
@@ -17,3 +17,6 @@ def home_view(request):
     else:
         form = EnrollForm()
     return render(request, 'madhavapp/home.html', {'form': form, 'error_message': error_message})
+
+def home(request):
+    return render(request, 'home.html')

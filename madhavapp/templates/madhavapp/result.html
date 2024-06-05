@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Result Image</title>
+    <title>Madhav Science _ Result</title>
     {% load static %}
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-image: url("{% static 'images/bg.jpg' %}");
+            background-size: cover;
         }
 
         .image-container {
@@ -26,8 +27,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 50px;
-            height: 50px;
+            width: 500px;
+            height: 500px;
             background: url("{% static 'images/firecracker.png' %}") no-repeat center center;
             background-size: contain;
             opacity: 0;
@@ -36,7 +37,14 @@
         }
 
         .firecracker-blow {
-            animation: blow 1s ease-out forwards;
+            animation: blow 6s ease-out forwards;
+        }
+
+        .btn-primary {
+            --bs-btn-padding-y: .25rem;
+            --bs-btn-padding-x: .5rem;
+            --bs-btn-font-size: .75rem;
+            border: solid red 2px;
         }
 
         @keyframes blow {
@@ -52,7 +60,10 @@
     </style>
 </head>
 <body>
-    <h1>Result Image</h1>
+    <a href="{% url 'home' %} "><button type="button" class="btn btn-primary" style="cursor: pointer;">Back</button></a>
+    <button type="button" class="btn btn-primary" onclick="window.print();"target="_blank" style="cursor: pointer;">Print</button>
+    <h1></h1>
+    
     <div class="image-container">
         <div id="firecracker"></div>
         <img id="result-image" src="{{ result_image.image.url }}" alt="Result Image">
@@ -67,13 +78,11 @@
                 resultImage.style.display = 'block';
                 setTimeout(function() {
                     firecracker.style.display = 'none';
-                }, 1000);
+                }, 15000);
             };
 
-            // Simulate image loading for demonstration purposes
-            setTimeout(function() {
-                resultImage.src = resultImage.getAttribute('src');
-            }, 500); // Adjust the timeout if needed
+            // Trigger the image load event for demonstration purposes
+            resultImage.src = resultImage.getAttribute('src');
         });
     </script>
 </body>

@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Madhav Science - Result</title>
+    <title>Madhav Science College Ujjain</title>
     {% load static %}
 </head>
 <style>
+    /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+} */
 .header{
         background-color: rgb(251, 208, 102);
         height: 80px;
@@ -63,16 +73,21 @@ button:hover {
     color: red;
     margin-bottom: 10px;
 }
-.advertise{
-    text-align: center;
-    margin-top: 50px;
 
+img{
+    position: relative;
+    left: -420px;
 }
-.advertise a{
-    text-decoration: none;
+.img{
+    background-image: url("{% static 'images/madhavlogo.jpeg' %}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 70px;
+    width: 120px;
+    position: relative;
+    left: -180px;
 }
-
-
 .s_head{
     border-bottom: 3px solid maroon;
     background-color: rgb(251, 208, 102);
@@ -86,19 +101,17 @@ button:hover {
     width: 100%;
 }
 </style>
-
 <body>
-<div class="header">
-        GOVT. MADHAV SCIENCE COLLEGE, UJJAIN</div>
+    <div class="header"><div class="img"></div>
+        VIKRAM UNIVERSITY, UJJAIN</div>
     <div class="contain">
-     <div class="container">
+    <div class="container">
         <div class="s_head">SEARCHING CRITERIA FOR RESULT</div>
-        <h1>Enter Roll Number</h1>
+        <h1>Enter Enroll Number</h1>
         {% if error_message %}
             <div class="error-message">{{ error_message }}</div>
         {% endif %}
         <form method="post" onsubmit="return validateCaptcha()">
-            {% csrf_token %}
             {{ form.as_p }}
             <div id="captcha">
                 <label id="captcha-question" for="captcha-input"></label>
@@ -116,7 +129,7 @@ button:hover {
             const num1 = Math.floor(Math.random() * 10);
             const num2 = Math.floor(Math.random() * 10);
             correctAnswer = num1 + num2;
-            document.getElementById('captcha-question').innerText = `Please Enter captcha ${num1} + ${num2}?`;
+            document.getElementById('captcha-question').innerText = Please Enter captcha ${num1} + ${num2}?;
         }
 
         function validateCaptcha() {
@@ -131,9 +144,5 @@ button:hover {
         // Generate a CAPTCHA question when the page loads
         window.onload = generateCaptcha;
     </script>
-
-<div class="advertise">
-    <span style="padding-bottom: 10px">Created By &nbsp;&nbsp;<a href="">AaradhyaDharma & Group </a> &nbsp;&nbsp;| <span class="far fa-copyright"></span> 2024 All rights reserved.</span>
-    </div>
 </body>
 </html>
