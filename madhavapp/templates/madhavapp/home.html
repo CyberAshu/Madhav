@@ -56,10 +56,33 @@ button:hover {
     margin-bottom: 10px;
 }
 
+.s_head{
+    border-bottom: 3px solid maroon;
+    background-color: rgb(251, 208, 102);
+    height: 50px;
+    font-size: 19px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    width: 100%;
+}
+.contain{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 50px;
+}
 
 </style>
 <body>
-    <div class="container">
+<div class="header"><div class="img"></div>
+        VIKRAM UNIVERSITY, UJJAIN</div>
+    <div class="contain">
+     <div class="container">
+        <div class="s_head">SEARCHING CRITERIA FOR RESULT</div>
         <h1>Enter Enroll Number</h1>
         {% if error_message %}
             <div class="error-message">{{ error_message }}</div>
@@ -74,6 +97,7 @@ button:hover {
             <button type="submit">Submit</button>
         </form>
     </div>
+</div>
 
     <script>
         let correctAnswer;
