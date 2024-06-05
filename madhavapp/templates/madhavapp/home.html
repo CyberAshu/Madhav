@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enroll Number Input</title>
+    {% load static %}
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+button:hover {
+    background-color: #45a049;
+}
+.error-message {
+    color: red;
+    margin-bottom: 10px;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Enter Enroll Number</h1>
+        {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+        {% endif %}
+        <form method="post" onsubmit="return validateCaptcha()">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="captcha">
+                <label id="captcha-question" for="captcha-input"></label>
+                <input type="text" id="captcha-input" name="captcha" required>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        let correctAnswer;
+
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10);
+            const num2 = Math.floor(Math.random() * 10);
+            correctAnswer = num1 + num2;
+            document.getElementById('captcha-question').innerText = `Please Enter captcha ${num1} + ${num2}?`;
+        }
+
+        function validateCaptcha() {
+            const userAnswer = document.getElementById('captcha-input').value;
+            if (parseInt(userAnswer, 10) !== correctAnswer) {
+                alert('Incorrect CAPTCHA answer. Please try again.');
+                return false;
+            }
+            return true;
+        }
+
+        // Generate a CAPTCHA question when the page loads
+        window.onload = generateCaptcha;
+    </script>
+</body>
+</html>
